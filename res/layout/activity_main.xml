@@ -10,7 +10,7 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/displayPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -29,6 +29,7 @@
         android:layout_alignParentTop="true"
         android:text="@string/message"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#F51616" />
+        android:textColor="#F51616"
+        android:textIsSelectable="true" />
 
 </RelativeLayout>

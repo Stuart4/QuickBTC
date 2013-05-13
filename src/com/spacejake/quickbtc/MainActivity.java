@@ -9,8 +9,11 @@ import java.net.URLConnection;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -25,13 +28,34 @@ public class MainActivity extends Activity {
     
     }
     public boolean updateButtonClicked(MenuItem item) {
-    	TextView display = (TextView) findViewById(R.id.textView1);
+    	TextView display = (TextView) findViewById(R.id.displayPrice);
     	display.setText("...");
     	new RetreiveFeedTask().execute();
 		return false;
     }
     
     public boolean infoButtonClicked(MenuItem item){
+    	ContextThemeWrapper wrapper = new ContextThemeWrapper(this, android.R.style.Theme_Holo);
+    	AlertDialog.Builder ad = new AlertDialog.Builder(wrapper);
+    	ad
+    		.setTitle("Would you like to donate?")
+    		.setMessage(R.string.informationDialog)
+    		//.setCancelable(true)
+    		.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // TODO Auto-generated method stub
+
+                }
+            })
+    		.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                	dialog.cancel();
+                }
+            });
+    	AlertDialog alertDialog = ad.create();
+    	alertDialog.show();
     	return false;
     }
 
@@ -95,7 +119,7 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
     		}
     	@Override
         protected void onPostExecute(Void result) {
-    	  TextView display = (TextView) findViewById(R.id.textView1);
+    	  TextView display = (TextView) findViewById(R.id.displayPrice);
           display.setText(price);
           //System.out.println(price);
           
