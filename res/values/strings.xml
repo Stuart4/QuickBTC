@@ -6,6 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="ellipsis">...</string>
     <string name="message">Displays the current 24hr average value of BTC in USD - information from blockchain.info</string>
-    <string name="Update">Update</string>
+    <string name="update">Update</string>
+    <string name="information">Information</string>
 
 </resources>

@@ -30,6 +30,10 @@ public class MainActivity extends Activity {
     	new RetreiveFeedTask().execute();
 		return false;
     }
+    
+    public boolean infoButtonClicked(MenuItem item){
+    	return false;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,7 +48,12 @@ public class MainActivity extends Activity {
     	return;
     }
 
-
+    protected void onPause(){
+    	if(new RetreiveFeedTask().isCancelled() == false){
+    		new RetreiveFeedTask().cancel(true);
+    	}
+    	super.onPause();
+    }
   
 public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
 	
