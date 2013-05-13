@@ -12,13 +12,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +32,7 @@ public class MainActivity extends Activity {
     }
     public boolean updateButtonClicked(MenuItem item) {
     	TextView display = (TextView) findViewById(R.id.displayPrice);
-    	display.setText("...");
+    	display.setText(R.string.ellipsis);
     	new RetreiveFeedTask().execute();
 		return false;
     }
@@ -48,12 +44,12 @@ public class MainActivity extends Activity {
     	          + "<style type=\"text/css\">body{color: #fff; background-color: #000;} a{color:#00FFFF;}"
     	          + "</style></head>"
     	          + "<body><h1>Open Source</h1><p>This software is free and open source under the GPLv3. You may view the code yourself <a href=\"https://github.com/SubZeroJake/QuickBTC\">here</a>.</p>"
-    	          + "<h1>Donations</h1><p>Donations are greatly appreciated and enables me to release software as open source. Donate <a href=\"http://www.donate.spacejake.com\">here</a>.</p>"
-    	          + "<h1>Content</h1><p>The current price is downloaded from <a href=\"http://www.blockchain.info\">blockchain.info</a> which takes the 24 hour average of both Mt.gox and Tradehill and then averages the two.</p></body>"
-    	          + "</html>";
+    	          + "<h1>Donations</h1><p>Donations are greatly appreciated and enable me to release software as open source. Donate <a href=\"http://www.donate.spacejake.com\">here</a>.</p>"
+    	          + "<h1>Content</h1><p>The current price is downloaded from <a href=\"http://www.blockchain.info\">blockchain.info</a> which takes the 24 hour average of both Mt.gox and Tradehill and then averages the two.</p>"
+    	          + "</body></html>";
+    	System.out.println(content);
     	WebView wv = new WebView (this);
     	wv.loadData(content, "text/html", "utf-8");
-    	//wv.setBackgroundColor(Color.BLACK);
     	wv.getSettings().setDefaultTextEncodingName("utf-8");
     	ad
     		.setTitle("Would you like to donate?")
@@ -127,8 +123,6 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
     			e.printStackTrace();
     			runOnUiThread(new Runnable() {
     				public void run() {
-    					//TextView display = (TextView) findViewById(R.id.textView1);
-    			          //display.setText(String.valueOf(price));
     				    Toast.makeText(MainActivity.this, "Error! Check your internet connection.", Toast.LENGTH_SHORT).show();
     				    }
     				});
@@ -140,7 +134,6 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
         protected void onPostExecute(Void result) {
     	  TextView display = (TextView) findViewById(R.id.displayPrice);
           display.setText(price);
-          //System.out.println(price);
           
         }
 

@@ -4,7 +4,7 @@
     <string name="app_name">QuickBTC</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="ellipsis">...</string>
+    <string name="ellipsis">&#8230;</string>
     <string name="message">The current 24-hour average price of BTC in USD</string>
     <string name="update">Update</string>
     <string name="information">Information</string>
