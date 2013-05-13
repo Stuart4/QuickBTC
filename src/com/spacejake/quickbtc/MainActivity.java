@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
         new RetreiveFeedTask().execute();
     
     }
-    public boolean goButtonClicked(MenuItem item) {
+    public boolean updateButtonClicked(MenuItem item) {
     	TextView display = (TextView) findViewById(R.id.textView1);
     	display.setText("...");
     	new RetreiveFeedTask().execute();
@@ -36,12 +36,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    
-    @Override
-    public void onDestroy() {
-      System.out.println("Destroying");
-      super.onDestroy();
-    }
+
 
   
 public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
@@ -61,7 +56,7 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
     			while ((line = r.readLine()) != null) {
     			    total.append(line);
     			}
-    			System.out.println(total.toString());
+    			//System.out.println(total.toString());
     			DecimalFormat twoDForm = new DecimalFormat("#.##");
     			price = Double.valueOf(total.toString());
     			price = Double.valueOf(twoDForm.format(price));

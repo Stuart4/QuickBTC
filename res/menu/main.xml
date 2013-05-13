@@ -6,6 +6,6 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/ic_menu_refresh"
-        android:onClick="goButtonClicked"
+        android:onClick="updateButtonClicked"
         android:title="Update"/>
 </menu>
