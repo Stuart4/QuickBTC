@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,21 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+    @Override
+    protected void onResume () {
+    	updateButtonClicked(null);
+    	super.onResume();
+    	return;
+    }
 
 
   
 public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
-    	public double price = 0.00;
+	
+	public String price = "0.00";
     	@Override
     	protected Void doInBackground(String... arg0) {
+    		
     		URL url;
     		try {
     			// get URL content
@@ -50,23 +59,24 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
     			URLConnection conn = url.openConnection();
      
     			// open the stream and put it into BufferedReader
-    			BufferedReader r = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
     			StringBuilder total = new StringBuilder();
-    			String line;
-    			while ((line = r.readLine()) != null) {
-    			    total.append(line);
+    			String value;
+    			while ((value = reader.readLine()) != null) {
+    			    total.append(value);
     			}
     			//System.out.println(total.toString());
-    			DecimalFormat twoDForm = new DecimalFormat("#.##");
-    			price = Double.valueOf(total.toString());
-    			price = Double.valueOf(twoDForm.format(price));
+    			DecimalFormat twoDs = new DecimalFormat("#.##");
+    			price = String.valueOf(twoDs.format(Double.valueOf(total.toString())));
+    			
     		} catch (MalformedURLException e) {
     			e.printStackTrace();
     		} catch (IOException e) {
     			e.printStackTrace();
     			runOnUiThread(new Runnable() {
     				public void run() {
-
+    					//TextView display = (TextView) findViewById(R.id.textView1);
+    			          //display.setText(String.valueOf(price));
     				    Toast.makeText(MainActivity.this, "Error! Check your internet connection.", Toast.LENGTH_SHORT).show();
     				    }
     				});
@@ -76,12 +86,14 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
     		}
     	@Override
         protected void onPostExecute(Void result) {
-          TextView display = (TextView) findViewById(R.id.textView1);
-          display.setText(String.valueOf(price));
+    	  TextView display = (TextView) findViewById(R.id.textView1);
+          display.setText(price);
+          //System.out.println(price);
+          
         }
 
-
-    	}
+    	
+    }
 
     
     

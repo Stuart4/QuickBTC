@@ -16,7 +16,7 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="47dp"
         android:layout_marginTop="56dp"
-        android:text="..."
+        android:text="@string/ellipsis"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFB00"
         android:textSize="80sp" />
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Displays the current 24hr average value of BTC in USD - information from blockchain.info"
+        android:text="@string/message"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#F51616" />
 
