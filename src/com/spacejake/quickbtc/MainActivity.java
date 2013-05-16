@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
     		ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int which) {
-                	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.donate.spacejake.com"));
+                	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://donate.spacejake.com"));
                 	startActivity(browserIntent);
 
                 }
@@ -91,7 +91,6 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
 	public String price = "0.00";
     	@Override
     	protected Void doInBackground(String... arg0) {
-    		
     		URL url;
     		try {
     			// get URL content
