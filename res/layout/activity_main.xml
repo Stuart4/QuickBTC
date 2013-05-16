@@ -10,6 +10,16 @@
     tools:context=".MainActivity" >
 
     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/message"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/red"
+        android:textIsSelectable="true" />
+    <TextView
         android:id="@+id/displayPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,18 +28,9 @@
         android:layout_marginTop="56dp"
         android:text="@string/ellipsis"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFB00"
-        android:textSize="80sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/message"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#F51616"
-        android:textIsSelectable="true" />
+        android:textColor="@color/gold"
+        android:clickable="true"
+        android:onClick="textClicked"
+        android:textSize="80sp" android:layout_gravity="center"/>
 
 </RelativeLayout>

@@ -19,6 +19,7 @@ import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,18 @@ public class MainActivity extends Activity {
         new RetreiveFeedTask().execute();
     
     }
+    public void update (){
+        TextView display = (TextView) findViewById(R.id.displayPrice);
+        display.setText(R.string.ellipsis);
+        new RetreiveFeedTask().execute();
+        return;
+    }
     public boolean updateButtonClicked(MenuItem item) {
-    	TextView display = (TextView) findViewById(R.id.displayPrice);
-    	display.setText(R.string.ellipsis);
-    	new RetreiveFeedTask().execute();
+    	update();
 		return false;
+    }
+    public void textClicked(View view) {
+        update();
     }
     
     public boolean infoButtonClicked(MenuItem item){
