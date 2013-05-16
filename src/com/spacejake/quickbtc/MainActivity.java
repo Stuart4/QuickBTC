@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new RetreiveFeedTask().execute();
+        update();
     
     }
     public void update (){
@@ -46,7 +46,8 @@ public class MainActivity extends Activity {
     }
     
     public boolean infoButtonClicked(MenuItem item){
-    	ContextThemeWrapper wrapper = new ContextThemeWrapper(this, android.R.style.Theme_Holo);
+    	//displays html formatted alert dialog - change assets/info.html to change content
+        ContextThemeWrapper wrapper = new ContextThemeWrapper(this, android.R.style.Theme_Holo);
     	AlertDialog.Builder ad = new AlertDialog.Builder(wrapper);
     	WebView wv = new WebView (this);
     	wv.loadUrl("file:///android_asset/info.html");
@@ -82,13 +83,15 @@ public class MainActivity extends Activity {
     }
     @Override
     protected void onResume () {
-    	updateButtonClicked(null);
+    	//updates price when app is resumed
+        update();
     	super.onResume();
     	return;
     }
 
     protected void onPause(){
-    	if(new RetreiveFeedTask().isCancelled() == false){
+    	//cancles AsyncTask when app is paused
+        if(new RetreiveFeedTask().isCancelled() == false){
     		new RetreiveFeedTask().cancel(true);
     	}
     	super.onPause();
@@ -101,18 +104,18 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
     	protected Void doInBackground(String... arg0) {
     		URL url;
     		try {
-    			// get URL content
+    			// get url content
     			url = new URL("http://blockchain.info/q/24hrprice");
     			URLConnection conn = url.openConnection();
      
-    			// open the stream and put it into BufferedReader
+    			// open  stream and put  in br
     			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
     			StringBuilder total = new StringBuilder();
     			String value;
     			while ((value = reader.readLine()) != null) {
     			    total.append(value);
     			}
-    			//System.out.println(total.toString());
+                //format double to two decimals
     			DecimalFormat twoDs = new DecimalFormat("#.##");
     			price = String.valueOf(twoDs.format(Double.valueOf(total.toString())));
     			
@@ -131,6 +134,7 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
     		}
     	@Override
         protected void onPostExecute(Void result) {
+            //update price on ui thread
     	  TextView display = (TextView) findViewById(R.id.displayPrice);
           display.setText(price);
           
