@@ -90,8 +90,8 @@ public class MainActivity extends Activity {
     }
 
     protected void onPause(){
-    	//cancles AsyncTask when app is paused
-        if(new RetreiveFeedTask().isCancelled() == false){
+    	//cancels AsyncTask when app is paused
+        if(!new RetreiveFeedTask().isCancelled()){
     		new RetreiveFeedTask().cancel(true);
     	}
     	super.onPause();
@@ -137,10 +137,9 @@ public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
             //update price on ui thread
     	  TextView display = (TextView) findViewById(R.id.displayPrice);
           display.setText(price);
-          
         }
 
-    	
+
     }
 
     
