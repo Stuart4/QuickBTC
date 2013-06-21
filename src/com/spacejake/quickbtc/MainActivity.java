@@ -1,3 +1,21 @@
+/*
+    Copyright 2013 Jacob Stuart
+
+    This file is part of QuickBTC.
+
+    QuickBTC is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Foobar is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>. */
+
 package com.spacejake.quickbtc;
 
 import java.io.BufferedReader;
@@ -34,7 +52,7 @@ public class MainActivity extends Activity {
     public void update (){
         TextView display = (TextView) findViewById(R.id.displayPrice);
         display.setText(R.string.ellipsis);
-        new RetreiveFeedTask().execute();
+        new RetrieveFeedTask().execute();
         return;
     }
     public boolean updateButtonClicked(MenuItem item) {
@@ -91,13 +109,13 @@ public class MainActivity extends Activity {
 
     protected void onPause(){
     	//cancels AsyncTask when app is paused
-        if(!new RetreiveFeedTask().isCancelled()){
-    		new RetreiveFeedTask().cancel(true);
+        if(!new RetrieveFeedTask().isCancelled()){
+    		new RetrieveFeedTask().cancel(true);
     	}
     	super.onPause();
     }
   
-public class RetreiveFeedTask extends AsyncTask<String, Void, Void> {
+public class RetrieveFeedTask extends AsyncTask<String, Void, Void> {
 	
 	public String price = "0.00";
     	@Override
