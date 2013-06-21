@@ -109,9 +109,9 @@ public class MainActivity extends Activity {
 
     protected void onPause(){
     	//cancels AsyncTask when app is paused
-        if(!new RetrieveFeedTask().isCancelled()){
-    		new RetrieveFeedTask().cancel(true);
-    	}
+
+    	new RetrieveFeedTask().cancel(true);
+
     	super.onPause();
     }
   
